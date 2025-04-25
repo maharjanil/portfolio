@@ -3,98 +3,532 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Anil Maharjan | 2D Explainer Video Animator</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* General Styles */
+        :root {
+            --primary-color: #6c63ff;
+            --secondary-color: #4d44db;
+            --dark-color: #2a2a2a;
+            --light-color: #f8f9fa;
+            --accent-color: #ff6584;
+            --text-color: #4a4a4a;
+            --text-light: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding-top: 56px;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-
-        section {
-            padding: 80px 0;
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
         }
-
+        
+        /* Navigation */
+        .navbar {
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 8px 15px !important;
+            margin: 0 5px;
+            color: var(--dark-color) !important;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
         /* Hero Section */
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://via.placeholder.com/1920x1080') no-repeat center center;
-            background-size: cover;
             min-height: 100vh;
-        }
-
-        /* Portfolio Items */
-        .portfolio-item {
-            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            opacity: 0.15;
+            z-index: 0;
         }
-
-        .portfolio-item img {
-            transition: transform 0.5s ease;
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
-
-        .portfolio-item:hover img {
-            transform: scale(1.1);
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark-color);
         }
-
-        /* Social Icons */
-        .social-icons a {
-            transition: color 0.3s ease, transform 0.3s ease;
+        
+        .hero-title span {
+            color: var(--primary-color);
+            position: relative;
             display: inline-block;
         }
-
+        
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 15px;
+            background-color: rgba(108, 99, 255, 0.3);
+            bottom: 5px;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 12px 30px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(108, 99, 255, 0.1);
+            color: var(--primary-color);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
         .social-icons a:hover {
-            color: #0d6efd !important;
-            transform: translateY(-5px);
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
         }
-
-        /* Progress Bars */
+        
+        /* Section Headings */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 60px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* About Section */
+        .about-section {
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-img {
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.03);
+        }
+        
+        .skill-item {
+            margin-bottom: 25px;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
         .progress {
-            height: 10px;
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e9ecef;
         }
-
-        /* Contact Form */
-        #contactForm .form-control {
-            border-radius: 0;
-            border: 1px solid #ddd;
-            padding: 10px 15px;
+        
+        .progress-bar {
+            background-color: var(--primary-color);
+            border-radius: 4px;
         }
-
-        #contactForm .form-control:focus {
-            box-shadow: none;
-            border-color: #0d6efd;
+        
+        /* Portfolio Section */
+        .portfolio-section {
+            background-color: #f8f9fa;
         }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
         }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            section {
-                padding: 60px 0;
+        
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            margin: 5px;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .filter-btn.active, 
+        .filter-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .filter-btn.active::after,
+        .filter-btn:hover::after {
+            width: 100%;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(108, 99, 255, 0.8), rgba(77, 68, 219, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.5s ease;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-category {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            opacity: 0.8;
+        }
+        
+        .portfolio-link {
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        
+        .portfolio-item:hover .portfolio-title,
+        .portfolio-item:hover .portfolio-category,
+        .portfolio-item:hover .portfolio-link {
+            transform: translateY(0);
+        }
+        
+        /* Video Section */
+        .video-section {
+            background-color: #ffffff;
+        }
+        
+        .video-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background-color: #f8f9fa;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(108, 99, 255, 0.1);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .contact-info-text h5 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .form-control {
+            height: 50px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.1);
+        }
+        
+        textarea.form-control {
+            height: auto;
+            min-height: 150px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 991.98px) {
+            .hero-title {
+                font-size: 2.8rem;
             }
             
-            .hero-section {
-                min-height: 80vh;
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 767.98px) {
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                margin-bottom: 40px;
             }
         }
     </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar">
     <!-- Navigation -->
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">My Portfolio</a>
+            <a class="navbar-brand" href="#">Anil Maharjan</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -121,84 +555,151 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section d-flex align-items-center">
-        <div class="container text-center">
-            <h1 class="display-3 fw-bold text-white">Hello, I'm <span class="text-primary">Your Name</span></h1>
-            <p class="lead text-white">Web Developer | Designer | Creative Professional</p>
-            <div class="social-icons mt-4">
-                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f fa-2x"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-twitter fa-2x"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in fa-2x"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-github fa-2x"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-2x"></i></a>
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title animate">Hi, I'm <span>Anil Maharjan</span></h1>
+                    <p class="hero-subtitle animate delay-1">2D Explainer Video Animator</p>
+                    <div class="animate delay-2">
+                        <a href="#contact" class="btn btn-primary me-3">Hire Me</a>
+                        <a href="#portfolio" class="btn btn-outline-primary">View Work</a>
+                    </div>
+                    <div class="social-icons mt-4 animate delay-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block animate delay-3">
+                    <img src="https://images.unsplash.com/photo-1608889825103-eb5a6f5adf91?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Anil Maharjan" class="img-fluid rounded-circle shadow" style="max-width: 400px;">
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-5">
+    <section id="about" class="py-5 about-section">
         <div class="container">
+            <h2 class="text-center section-title">About Me</h2>
             <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h2 class="fw-bold mb-4">About Me</h2>
-                    <p class="lead">I'm a passionate professional with expertise in web development and design.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim.</p>
-                    <p>Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere.</p>
-                    <div class="skills mt-4">
-                        <h5>My Skills</h5>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%">HTML/CSS</div>
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1608889825103-eb5a6f5adf91?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Anil Maharjan" class="img-fluid profile-img">
+                </div>
+                <div class="col-lg-7">
+                    <h3 class="mb-4">Professional 2D Animator</h3>
+                    <p class="mb-4">I specialize in creating engaging explainer videos that help businesses communicate complex ideas simply and effectively. With a keen eye for detail and a passion for storytelling, I bring concepts to life through animation.</p>
+                    <p class="mb-5">My expertise includes character animation, motion graphics, and creating visual narratives that captivate audiences and deliver clear messages.</p>
+                    
+                    <h4 class="mb-4">My Animation Skills</h4>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Autodesk Maya</span>
+                            <span>90%</span>
                         </div>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%">JavaScript</div>
-                        </div>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 75%">Bootstrap</div>
-                        </div>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 70%">Design</div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 90%"></div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <img src="https://via.placeholder.com/500x500" alt="Profile Image" class="img-fluid rounded-circle shadow">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Adobe After Effects</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Adobe Photoshop</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 80%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-5 bg-light">
+    <section id="portfolio" class="py-5 portfolio-section">
         <div class="container">
-            <h2 class="text-center fw-bold mb-5">My Work</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card portfolio-item">
-                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Project 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Project 1</h5>
-                            <p class="card-text">Short description of the project and technologies used.</p>
-                            <a href="#" class="btn btn-primary">View Project</a>
+            <h2 class="text-center section-title">My Animation Portfolio</h2>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="explainer">Explainer Videos</button>
+                <button class="filter-btn" data-filter="character">Character Animation</button>
+                <button class="filter-btn" data-filter="motion">Motion Graphics</button>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="explainer">
+                    <img src="https://images.unsplash.com/photo-1608889825271-9696281ab804?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Explainer Video Project" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Tech Explainer Video</h4>
+                        <p class="portfolio-category">Explainer Video</p>
+                        <div>
+                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card portfolio-item">
-                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Project 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Project 2</h5>
-                            <p class="card-text">Short description of the project and technologies used.</p>
-                            <a href="#" class="btn btn-primary">View Project</a>
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="character">
+                    <img src="https://images.unsplash.com/photo-1608889825103-eb5a6f5adf91?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Character Animation" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Animated Character Series</h4>
+                        <p class="portfolio-category">Character Animation</p>
+                        <div>
+                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card portfolio-item">
-                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Project 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Project 3</h5>
-                            <p class="card-text">Short description of the project and technologies used.</p>
-                            <a href="#" class="btn btn-primary">View Project</a>
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="motion">
+                    <img src="https://images.unsplash.com/photo-1608889825205-eebdb5fc5406?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Motion Graphics" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Product Motion Graphics</h4>
+                        <p class="portfolio-category">Motion Graphics</p>
+                        <div>
+                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="explainer">
+                    <img src="https://images.unsplash.com/photo-1608889825205-eebdb5fc5406?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Explainer Video Project" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Educational Animation</h4>
+                        <p class="portfolio-category">Explainer Video</p>
+                        <div>
+                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="character">
+                    <img src="https://images.unsplash.com/photo-1608889825271-9696281ab804?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Character Animation" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Brand Mascot Animation</h4>
+                        <p class="portfolio-category">Character Animation</p>
+                        <div>
+                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="motion">
+                    <img src="https://images.unsplash.com/photo-1608889825103-eb5a6f5adf91?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Motion Graphics" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Infographic Animation</h4>
+                        <p class="portfolio-category">Motion Graphics</p>
+                        <div>
+                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                 </div>
@@ -207,12 +708,12 @@
     </section>
 
     <!-- Video Section -->
-    <section id="video" class="py-5">
+    <section id="video" class="py-5 video-section">
         <div class="container">
-            <h2 class="text-center fw-bold mb-5">My Video</h2>
+            <h2 class="text-center section-title">My Animation Showreel</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="ratio ratio-16x9">
+                    <div class="ratio ratio-16x9 video-container">
                         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video" allowfullscreen></iframe>
                     </div>
                 </div>
@@ -221,52 +722,61 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-5 bg-light">
+    <section id="contact" class="py-5 contact-section">
         <div class="container">
-            <h2 class="text-center fw-bold mb-5">Get In Touch</h2>
+            <h2 class="text-center section-title">Get In Touch</h2>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 mb-5 mb-lg-0">
                     <form id="contactForm">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" required>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6 mt-3 mt-md-0">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="5" required></textarea>
-                        </div>
+                        <input type="text" class="form-control" placeholder="Subject">
+                        <textarea class="form-control" placeholder="Your Message" rows="5" required></textarea>
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
                 </div>
-                <div class="col-lg-6 mt-4 mt-lg-0">
-                    <div class="contact-info">
-                        <h4>Contact Information</h4>
-                        <ul class="list-unstyled">
-                            <li class="mb-3">
-                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
-                                <span>123 Street, City, Country</span>
-                            </li>
-                            <li class="mb-3">
-                                <i class="fas fa-phone me-2 text-primary"></i>
-                                <span>+1 234 567 890</span>
-                            </li>
-                            <li class="mb-3">
-                                <i class="fas fa-envelope me-2 text-primary"></i>
-                                <span>your.email@example.com</span>
-                            </li>
-                        </ul>
-                        <hr>
-                        <h4 class="mt-4">Follow Me</h4>
+                <div class="col-lg-6">
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info-text">
+                            <h5>Location</h5>
+                            <p>Kathmandu, Nepal</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-text">
+                            <h5>Email</h5>
+                            <p>anil@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info-text">
+                            <h5>Phone</h5>
+                            <p>+977 98XXXXXXXX</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h5>Follow Me</h5>
                         <div class="social-icons">
-                            <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f fa-2x"></i></a>
-                            <a href="#" class="text-dark me-3"><i class="fab fa-twitter fa-2x"></i></a>
-                            <a href="#" class="text-dark me-3"><i class="fab fa-linkedin-in fa-2x"></i></a>
-                            <a href="#" class="text-dark me-3"><i class="fab fa-github fa-2x"></i></a>
-                            <a href="#" class="text-dark me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -275,16 +785,36 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-4 bg-dark text-white text-center">
+    <footer class="footer">
         <div class="container">
-            <p class="mb-0">&copy; 2023 My Portfolio. All rights reserved.</p>
+            <div class="footer-links mb-4">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#video">Showreel</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p>&copy; 2023 Anil Maharjan. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
 
     <!-- Bootstrap 5 JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
             // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -302,14 +832,37 @@
                 });
             });
             
-            // Add scrollspy effect
-            const navbar = document.getElementById('navbar');
+            // Back to top button
+            const backToTopButton = document.querySelector('.back-to-top');
             window.addEventListener('scroll', function() {
-                if (window.scrollY > 100) {
-                    navbar.classList.add('navbar-scrolled');
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('active');
                 } else {
-                    navbar.classList.remove('navbar-scrolled');
+                    backToTopButton.classList.remove('active');
                 }
+            });
+            
+            // Portfolio filter
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    portfolioItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
             });
             
             // Contact form submission
@@ -318,25 +871,33 @@
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    // Get form values
-                    const name = document.getElementById('name').value;
-                    const email = document.getElementById('email').value;
-                    const message = document.getElementById('message').value;
-                    
-                    // Here you would typically send the data to a server
-                    // For this example, we'll just log it and show an alert
-                    console.log({ name, email, message });
-                    
+                    // Here you would typically send the form data to a server
+                    // For this example, we'll just show an alert
                     alert('Thank you for your message! I will get back to you soon.');
                     contactForm.reset();
                 });
             }
             
-            // Initialize Bootstrap tooltips
-            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
+            // Animation on scroll
+            const animateElements = document.querySelectorAll('.animate');
+            
+            function checkScroll() {
+                animateElements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            // Initial check
+            checkScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkScroll);
         });
     </script>
 </body>
